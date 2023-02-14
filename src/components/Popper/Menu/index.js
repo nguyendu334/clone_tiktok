@@ -8,12 +8,9 @@ import styles from './Menu.module.scss';
 
 const cx = classNames.bind(styles);
 
-const defaultFn = () => {
-
-}
+const defaultFn = () => {};
 
 export default function Menu({ children, items = [], onChange = defaultFn }) {
-
     const [history, setHisstory] = useState([
         {
             data: items,
@@ -33,7 +30,7 @@ export default function Menu({ children, items = [], onChange = defaultFn }) {
                         if (isParent) {
                             setHisstory((prev) => [...prev, item.children]);
                         } else {
-                            onChange(item)
+                            onChange(item);
                         }
                     }}
                 />
@@ -44,6 +41,7 @@ export default function Menu({ children, items = [], onChange = defaultFn }) {
         <Tippy
             interactive
             delay={[0, 700]}
+            offset={[12, 8]}
             placement="bottom-end"
             render={(attrs) => (
                 <div className={cx('menu-list')} tabIndex="-1" {...attrs}>
@@ -60,6 +58,7 @@ export default function Menu({ children, items = [], onChange = defaultFn }) {
                     </PopperWrapper>
                 </div>
             )}
+            onHidden={() => setHisstory((prev) => prev.slice(0, 1))}
         >
             {children}
         </Tippy>

@@ -23,7 +23,6 @@ import { UploadIcon, MessIcon, InboxIcon } from '~/components/Icons';
 import Image from '~/components/Image';
 import Search from '../Search';
 
-
 const cx = classNames.bind(styles);
 const MENU_ITEMS = [
     {
@@ -60,7 +59,6 @@ function Header() {
     // eslint-disable-next-line no-undef
 
     const currentUser = true;
-
 
     const handleMenuChange = (menuItem) => {
         switch (menuItem.type) {
@@ -99,7 +97,9 @@ function Header() {
     return (
         <header className={cx('wrapper')}>
             <div className={cx('inner')}>
-                <Link to={routesConfig.home} className={cx('logo-link')}><img src={images.logo2} alt="TikTok" /></ Link>
+                <Link to={routesConfig.home} className={cx('logo-link')}>
+                    <img src={images.logo2} alt="TikTok" />
+                </Link>
 
                 <Search />
 
@@ -120,7 +120,6 @@ function Header() {
                                 <button className={cx('action-btn')}>
                                     <InboxIcon />
                                     <span className={cx('badge')}>12</span>
-
                                 </button>
                             </Tippy>
                         </>

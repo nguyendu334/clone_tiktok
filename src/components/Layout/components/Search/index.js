@@ -32,7 +32,7 @@ export default function Search() {
 
             const result = await searchServices.search(debounced);
             setSearchResult(result);
-            
+
             setLoading(false);
         };
 
@@ -47,6 +47,13 @@ export default function Search() {
 
     const handleHideResult = () => {
         setShowResult(false);
+    };
+
+    const handleChange = (e) => {
+        const searchValue = e.target.value;
+        if(!searchValue.startsWith(' ')){
+            setSearchValue(searchValue);
+        }
     };
 
     return (
@@ -70,8 +77,9 @@ export default function Search() {
                     ref={inputRef}
                     value={searchValue}
                     placeholder="Search accounts and videos"
-                    onChange={(e) => setSearchValue(e.target.value)}
+                    onChange={handleChange}
                     onFocus={() => setShowResult(true)}
+                    spellCheck={false}
                 />
                 {!!searchValue && !loading && (
                     <button className={cx('clear')} onClick={handleClear}>
@@ -80,7 +88,7 @@ export default function Search() {
                 )}
                 {loading && <FontAwesomeIcon className={cx('loading')} icon={faSpinner} />}
 
-                <button className={cx('search-btn')}>
+                <button className={cx('search-btn')} onMouseDown={(e) => e.preventDefault()}>
                     <SearchIcon />
                 </button>
             </div>

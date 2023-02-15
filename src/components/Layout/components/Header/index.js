@@ -10,12 +10,15 @@ import {
     faSignOut,
     faUser,
 } from '@fortawesome/free-solid-svg-icons';
+import { Link } from 'react-router-dom';
 import Tippy from '@tippyjs/react';
 import 'tippy.js/dist/tippy.css';
+
+import routesConfig from '~/config/routes';
 import Button from '~/components/Button';
 import styles from './Header.module.scss';
 import images from '~/assets/images';
-import Menu from './../../../Popper/Menu/index';
+import Menu from '~/components/Popper/Menu';
 import { UploadIcon, MessIcon, InboxIcon } from '~/components/Icons';
 import Image from '~/components/Image';
 import Search from '../Search';
@@ -88,7 +91,7 @@ function Header() {
         {
             icon: <FontAwesomeIcon icon={faSignOut} />,
             title: 'Log out',
-            to: '/',
+            to: routesConfig.home,
             separate: true,
         },
     ];
@@ -96,7 +99,7 @@ function Header() {
     return (
         <header className={cx('wrapper')}>
             <div className={cx('inner')}>
-                <img src={images.logo2} alt="TikTok" />
+                <Link to={routesConfig.home} className={cx('logo-link')}><img src={images.logo2} alt="TikTok" /></ Link>
 
                 <Search />
 

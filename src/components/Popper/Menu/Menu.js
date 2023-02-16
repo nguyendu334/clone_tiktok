@@ -16,7 +16,7 @@ Menu.propTypes = {
     items: PropTypes.array,
     hideOnClick: PropTypes.bool,
     onChange: PropTypes.func,
-}
+};
 
 export default function Menu({ children, items = [], hideOnClick = false, onChange = defaultFn }) {
     const [history, setHisstory] = useState([
@@ -45,6 +45,24 @@ export default function Menu({ children, items = [], hideOnClick = false, onChan
             );
         });
     };
+
+    const handleBack = () => {
+        setHisstory((prev) => prev.slice(0, prev.length - 1));
+    };
+
+    const renderResult = (attrs) => (
+        <div className={cx('menu-list')} tabIndex="-1" {...attrs}>
+            <PopperWrapper className={cx('menu-popper')}>
+                {history.length > 1 && <Header title={current.title} onBack={handleBack} />}
+                <div className={cx('menu-body')}>{renderItems()}</div>
+            </PopperWrapper>
+        </div>
+    );
+    // reset to first Page
+    const handleReset = () => {
+        setHisstory((prev) => prev.slice(0, 1));
+    };
+
     return (
         <Tippy
             interactive
@@ -52,22 +70,8 @@ export default function Menu({ children, items = [], hideOnClick = false, onChan
             offset={[12, 8]}
             hideOnClick={hideOnClick}
             placement="bottom-end"
-            render={(attrs) => (
-                <div className={cx('menu-list')} tabIndex="-1" {...attrs}>
-                    <PopperWrapper className={cx('menu-popper')}>
-                        {history.length > 1 && (
-                            <Header
-                                title={current.title}
-                                onBack={() => {
-                                    setHisstory((prev) => prev.slice(0, prev.length - 1));
-                                }}
-                            />
-                        )}
-                        <div className={cx('menu-body')}>{renderItems()}</div>
-                    </PopperWrapper>
-                </div>
-            )}
-            onHidden={() => setHisstory((prev) => prev.slice(0, 1))}
+            render={renderResult}
+            onHidden={handleReset}
         >
             {children}
         </Tippy>

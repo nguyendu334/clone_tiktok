@@ -1,5 +1,1 @@
-import React from 'react';
-
-export default function Search() {
-    return <h2>Search Page</h2>;
-}
+export { default } from './Search';

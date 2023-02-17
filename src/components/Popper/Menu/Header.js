@@ -9,7 +9,7 @@ const cx = classNames.bind(styles);
 Header.propTypes = {
     title: PropTypes.string.isRequired,
     onBack: PropTypes.func.isRequired,
-}
+};
 
 export default function Header({ title, onBack }) {
     return (

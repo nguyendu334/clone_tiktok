@@ -23,9 +23,10 @@
     }
 }
 
-.icon + .title, .title +.icon {
+.icon + .title,
+.title + .icon {
     margin-left: 8px;
-} 
+}
 
 .icon {
     display: inline-block;
@@ -60,7 +61,7 @@
     border-color: currentColor;
 
     &:hover {
-    border-color: currentColor;
+        border-color: currentColor;
 
         background-color: rgba(254, 44, 85, 0.06);
     }

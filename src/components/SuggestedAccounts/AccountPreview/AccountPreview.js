@@ -16,7 +16,9 @@ export default function AccountPreview() {
                     src="https://taimienphi.vn/tmp/cf/aut/Uhun-IbFB-MnGE-DiPL-OCTB-hinh-dep-1.jpg"
                     alt=""
                 ></img>
-                <Button className={cx('follow-btn')} primary>Follow</Button>
+                <Button className={cx('follow-btn')} primary>
+                    Follow
+                </Button>
             </div>
             <div className={cx('body')}>
                 <p className={cx('nickname')}>

@@ -8,19 +8,17 @@ const cx = classNames.bind(styles);
 
 SuggestedAccounts.propTypes = {
     label: PropTypes.string.isRequired,
+    data: PropTypes.array,
 };
 
-export default function SuggestedAccounts({ label }) {
+export default function SuggestedAccounts({ label, data = [] }) {
     return (
         <div className={cx('wrapper')}>
             <p className={cx('label')}>{label}</p>
-            <AccountItem />
-            <AccountItem />
-            <AccountItem />
-            <AccountItem />
-            <AccountItem />
-            <AccountItem />
-            <p className={cx('more-btn')}>See all</p>
+            {data.map((acount) => (
+                <AccountItem key={acount.id} data={acount} />
+            ))}
+            <p className={cx('more-btn')}>See All</p>
         </div>
     );
 }
